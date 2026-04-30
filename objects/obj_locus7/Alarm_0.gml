@@ -1,4 +1,3 @@
-var next_room_index = global.current_level;
 global.current_level++;
 
 switch (global.current_level) {

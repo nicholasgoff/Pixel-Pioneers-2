@@ -1,4 +1,4 @@
-//Call this ONCE from obj_locus7 create event or persisten controller object
+//Call this ONCE from obj_locus7 create event or persistent controller object
 //Initialises all global state for Possession Protocol
 
 function scr_global_init(){
@@ -24,8 +24,8 @@ function scr_global_init(){
 	global.hud_message = ""; //bottom screen text
 	global.hud_msg_timer = 0; //frames remaining to show message
 	
-	// Stamina (used by guards and robots when sprinting
+	// Stamina (used by guards and robots when sprinting)
 	global.host_stamina = 100;
-	global.hot_stamina_max = 100;
+	global.host_stamina_max = 100;
 	
 }

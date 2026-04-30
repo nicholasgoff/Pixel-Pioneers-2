@@ -1,5 +1,4 @@
 //shared helper functions used by guard, drone, and robot objects
-
 //scr_patrol_step(inst)
 // simple waypoint patrol. inst must have: 
 //	  inst.patrol_points - array of [x,y] pairs
@@ -34,8 +33,8 @@ function scr_patrol_step(inst) {
 	}
 }
 
-//scr_camer_sees(cam_inst, tx, ty)
-// returns true if point (tx, ty) is withing the cameras cone of vision
+//scr_camera_sees(cam_inst, tx, ty)
+// returns true if point (tx, ty) is within the camera's cone of vision
 // cam_inst must have:
 //  cam_inst.view_angle - direction the camera faces (degrees)
 //  cam_inst.view_fov - half-angle of cone
@@ -49,5 +48,9 @@ function scr_camera_sees(cam_inst, tx, ty) {
 	
 	if (angle_diff > cam_inst.view_fov) return false; 
 	
-	//Line of sight check against walls
+	// Line of sight check against walls
 	if (collision_line(cam_inst.x, cam_inst.y, tx, ty, obj_wall, false, false))
+		return false;
+	
+	return true;
+}

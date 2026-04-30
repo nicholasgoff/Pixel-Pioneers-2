@@ -53,6 +53,7 @@
     {"id":{"name":"rm_lose","path":"rooms/rm_lose/rm_lose.yy",},},
     {"id":{"name":"rm_startScreen","path":"rooms/rm_startScreen/rm_startScreen.yy",},},
     {"id":{"name":"rm_win","path":"rooms/rm_win/rm_win.yy",},},
+    {"id":{"name":"scr_alert_step","path":"scripts/scr_alert_step/scr_alert_step.yy",},},
     {"id":{"name":"scr_boss_logic","path":"scripts/scr_boss_logic/scr_boss_logic.yy",},},
     {"id":{"name":"scr_global_init","path":"scripts/scr_global_init/scr_global_init.yy",},},
     {"id":{"name":"scr_locus_movement","path":"scripts/scr_locus_movement/scr_locus_movement.yy",},},

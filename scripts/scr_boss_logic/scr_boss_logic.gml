@@ -1,5 +1,5 @@
 //Rival AI boss encounter - Level 4
-//Cycles through phases, seixin control of units and reacting to the players position
+//Cycles through phases, seizing control of units and reacting to the players position
 
 //scr_boss_init()
 // call once from level 4 room start or controller object
@@ -20,10 +20,10 @@ function scr_boss_step(locus_inst) {
 	//Phase Transitions
 	if (global.boss_hp <= 2 && global.boss_phase == 1) scr_boss_phase2();
 	else if (global.boss_hp <= 1 && global.boss_phase == 2) scr_boss_phase3();
-	else if (global.boss.hp <= 0) scr_boss_defeated(locus_inst);
+	else if (global.boss_hp <= 0) scr_boss_defeated(locus_inst);
 	
-	//Rival Takeover: sieze random non-possessed unit
-	if (global.boss_takeover_cd <=0) {
+	//Rival Takeover: seize random non-possessed unit
+	if (global.boss_takeover_cd <= 0) {
 		scr_rival_seize_unit();
 		global.boss_takeover_cd = scr_boss_takeover_interval();
 	}
@@ -41,12 +41,12 @@ function scr_rival_seize_unit() {
 	//build pool of eligible units
 	var pool = ds_list_create(); 
 	
-	with (obj_securityGaurd) {
-		if (id != global.possessed_unit && !ds_list_find_index(global.rival_targets, id) >= 0) 
+	with (obj_securityGuard) {
+		if (id != global.possessed_unit && ds_list_find_index(global.rival_targets, id) < 0) 
 			ds_list_add(pool, id);
 	}
 	with (obj_securityRobot) {
-		if (id != global.possessed_unit && !ds_list_find_index(global.rival_targets, id) >= 0)
+		if (id != global.possessed_unit && ds_list_find_index(global.rival_targets, id) < 0)
 			ds_list_add(pool, id);
 	}
 	
@@ -55,13 +55,14 @@ function scr_rival_seize_unit() {
 	var pick = pool[| irandom(ds_list_size(pool) - 1)];
 	ds_list_add(global.rival_targets, pick);
 	
-	//visual indicator: change to red on siezed unit
+	//visual indicator: change to red on seized unit
 	pick.image_blend = c_red;
-	pick.patrol_paused = true; //rival takes over movement via scr_rival_unti_pursue
+	pick.patrol_paused = true; //rival takes over movement via scr_rival_unit_pursue
 	
 	scr_hud_message("WARNING - RIVAL AI SEIZED A UNIT"); 
 	ds_list_destroy(pool);
-	
+}
+
 //scr_rival_unit_pursue(unit_inst, locus_inst)
 // moves rival-controlled unit towards players position
 function scr_rival_unit_persue(unit_inst, locus_inst) {
@@ -109,7 +110,7 @@ function scr_boss_phase2() {
 	scr_hud_message("RIVAL AI ESCALATING - SEIZURE RATE INCREASED");
 	//accelerate takeover rate and speed of rival units
 	with (obj_rivalAi) move_speed = 2.5;
-	with (obj_securityGaurd) move_speed = 2.5;
+	with (obj_securityGuard) move_speed = 2.5;
 }
 
 function scr_boss_phase3() {
@@ -126,13 +127,12 @@ function scr_boss_defeated(locus_inst) {
 	global.rival_active = false; 
 	global.level_complete = true; 
 	scr_hud_message("RIVAL AI NEUTRALISED - TRANSMITTING TO FREEDOM...");
-	//transistion to win screen
-	// alarm on locus obj
+	//transition to win screen via alarm on locus obj
 	with (obj_locus7) alarm[1] = 300;
 }
 
 //scr_boss_takeover_interval()
-// returns fram interval between hostile takeovers based on current phase
+// returns frame interval between hostile takeovers based on current phase
 function scr_boss_takeover_interval() {
 	switch (global.boss_phase) {
 		case 1: return 360; //every 6 seconds

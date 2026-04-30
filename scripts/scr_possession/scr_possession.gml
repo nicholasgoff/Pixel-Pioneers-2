@@ -2,21 +2,18 @@
 
 //scr_try_possess(locus_inst)
 // called when player left clicks while in ghost form
-// find a possessable unit with range and takes it over
-
+// find a possessable unit within range and takes it over
 function scr_try_possess(locus_inst) {
 	var POSSESS_RANGE = 64; //pixels
 	
 	//scan all possessable unit types
-	var unit_types = [obj_securityGaurd, obj_workerDrone, obj_securityRobot];
+	var unit_types = [obj_securityGuard, obj_workerDrone, obj_securityRobot];
 	var best = noone; 
 	var best_dist = POSSESS_RANGE; 
 	
-	var mx = device_mouse_x_to gui(0); //mouse in room coords if camera is 1:1
-	var my = device_mouse_y_to_gui(0); 
-	//for room-space mouse:
-	mx = mouse_x;
-	my = mouse_y;
+	//room-space mouse coords
+	var mx = mouse_x;
+	var my = mouse_y;
 	
 	var i = 0;
 	repeat(array_length(unit_types)) {
@@ -25,8 +22,8 @@ function scr_try_possess(locus_inst) {
 		if (inst != noone) {
 			var d = point_distance(mx, my, inst.x, inst.y);
 			if (d < best_dist) {
-				//cannot possess unit the rival Ai owns
-				if (!ds_list_find_index(globa.rival_targets, inst) >= 0 || !global.rival_active) {
+				//cannot possess a unit the rival AI owns
+				if (ds_list_find_index(global.rival_targets, inst) < 0 || !global.rival_active) {
 					best_dist = d;
 					best = inst;
 				}
@@ -35,17 +32,17 @@ function scr_try_possess(locus_inst) {
 		i++;
 	}
 	
-	if (best = noone) return false;
+	if (best == noone) return false;
 	
 	//Possess the unit
-	global.possessd_unit = best;
+	global.possessed_unit = best;
 	best.is_possessed = true; 
 	best.patrol_paused = true; //freeze AI patrol while possessed
 	
 	//restore stamina to full when entering a new host
 	global.host_stamina = global.host_stamina_max; 
 	
-	//visual: locus snaps to host postition (hidden in host mode)
+	//visual: locus snaps to host position (hidden in host mode)
 	locus_inst.visible = false;
 	
 	//HUD feedback
@@ -53,28 +50,28 @@ function scr_try_possess(locus_inst) {
 	return true;
 }
 
-//scr_release_host(ghost_inst)
-// called when player presses E, or forefully ejected
+//scr_release_host(locus_inst)
+// called when player presses E, or forcefully ejected
 function scr_release_host(locus_inst) {
 	if (global.possessed_unit == noone) return; 
 	
 	var host = global.possessed_unit; 
 	
-	//Return locus to host position before detatching
+	//Return locus to host position before detaching
 	locus_inst.x = host.x;
 	locus_inst.y = host.y;
 	locus_inst.visible = true;
 	
 	//Host resumes patrol after a short delay
 	host.is_possessed = false; 
-	host.return_timer = 180; //3 seconds at 60 fps beforepatrol resumes
+	host.return_timer = 180; //3 seconds at 60 fps before patrol resumes
 	
 	global.possessed_unit = noone;
 	
 	scr_hud_message("LINK SEVERED - FREE ROAM");
 }
 
-//scr_froce_eject(locus_inst)
+//scr_force_eject(locus_inst)
 // called by camera detection or rival AI interference
 function scr_force_eject(locus_inst) {
 	scr_release_host(locus_inst);

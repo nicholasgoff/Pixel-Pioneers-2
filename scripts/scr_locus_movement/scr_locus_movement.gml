@@ -1,5 +1,4 @@
 //Handle free-roam locus movement and possessed-host movement each step
-
 //scr_locus_free_move(inst)
 // call from obj_locus7 Step when NOT possessing a unit
 // Locus passes through everything - no collision, but cannot open doors
@@ -17,10 +16,10 @@ function scr_locus_free_move(inst) {
 	inst.y = clamp(inst.y, 8, room_height - 8); 
 	
 	//locus is detected by cameras - check exposure
-	scr_locus_camera_check(inst);
+	scr_ghost_camera_check(inst);
 }
 
-//scr_host_move(locus_inst)
+//scr_host_move(ghost_inst)
 // call from obj_locus7 step when possessing a unit
 // routes input through the current hosts movement rules
 function scr_host_move(ghost_inst) {
@@ -35,7 +34,8 @@ function scr_host_move(ghost_inst) {
 	
 	//stamina drain when sprinting
 	if (sprinting) {
-		global.host_stamina <= 0) {
+		global.host_stamina -= 1;
+		if (global.host_stamina <= 0) {
 			sprinting = false; 
 			global.host_stamina = 0;
 		}
@@ -47,7 +47,7 @@ function scr_host_move(ghost_inst) {
 	var dx = (keyboard_check(ord("D")) - keyboard_check(ord("A"))) * SPD; 
 	var dy = (keyboard_check(ord("S")) - keyboard_check(ord("W"))) * SPD;
 	
-	//collision: drone ingnore walls; others don't
+	//collision: drone ignores walls; others don't
 	if (host.object_index == obj_workerDrone) {
 		host.x += dx;
 		host.y += dy;
@@ -59,8 +59,8 @@ function scr_host_move(ghost_inst) {
 	}
 	
 	//sync locus position to host
-	locus_inst.x = host.x;
-	locus_inst.y = host.y; 
+	ghost_inst.x = host.x;
+	ghost_inst.y = host.y; 
 	
 	//bounds
 	host.x = clamp(host.x, 8, room_width - 8);
@@ -73,8 +73,8 @@ function scr_host_move(ghost_inst) {
 	}
 }
 
-//scr_locus_camera_check(locus_inst)
-// if locus is in free-roam and insside a camera cone, trigger eject penalty
+//scr_ghost_camera_check(locus_inst)
+// if locus is in free-roam and inside a camera cone, trigger alert penalty
 function scr_ghost_camera_check(locus_inst) {
 	if (global.possessed_unit != noone) return; //only matters when free
 	

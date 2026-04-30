@@ -16,6 +16,7 @@ if (!is_possessed) {
 		//movement handled by scr_rival_unit_pursue in scr_boss_step
 		patrol_paused = true; 
 	}
+}
 	
 	//green tint when possessed, red when rival-controlled
 	if (is_possessed) {
