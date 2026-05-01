@@ -1,10 +1,9 @@
-//patrol
-patrol_points = [[0,0],[0,0]]; //override in room editor creation code per guard
-patrol_index = 0;
-patrol_speed = 2;
+patrol_path = -1;  //assign in room editor creation code
+patrol_speed = 0.7;  //adjust per unit type
 patrol_paused = false;
 return_timer = 0;
-
+patrol_resume = false;
+patrol_path_pos = 0; //saves position on path when possessed
 //possession
 is_possessed = false;
 possessed_blend = c_lime;

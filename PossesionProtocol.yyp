@@ -56,6 +56,7 @@
     {"id":{"name":"obj_wall","path":"objects/obj_wall/obj_wall.yy",},},
     {"id":{"name":"obj_workerDrone","path":"objects/obj_workerDrone/obj_workerDrone.yy",},},
     {"id":{"name":"path_guard1_patrol","path":"paths/path_guard1_patrol/path_guard1_patrol.yy",},},
+    {"id":{"name":"Path2","path":"paths/Path2/Path2.yy",},},
     {"id":{"name":"rm_levelFour","path":"rooms/rm_levelFour/rm_levelFour.yy",},},
     {"id":{"name":"rm_levelOne","path":"rooms/rm_levelOne/rm_levelOne.yy",},},
     {"id":{"name":"rm_levelThree","path":"rooms/rm_levelThree/rm_levelThree.yy",},},

@@ -2,6 +2,12 @@
 //Initialises all global state for Possession Protocol
 
 function scr_global_init(){
+	
+	global.locus_hp = 10;
+	global.locus_hp_max = 10;
+	global.locus_regen_timer = 0;
+	global.locus_drain_timer = 0;
+	REGEN_THRESHOLD = 600;
 	//Core possession state
 	global.possessed_unit = noone; //instance currently inhabited
 	global.locus_x = 0; //locus world position (synced when free)

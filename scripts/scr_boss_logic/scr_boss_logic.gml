@@ -37,12 +37,18 @@ function scr_boss_step(locus_inst) {
 //scr_rival_seize_unit()
 // picks random guard or robot not under player control
 // and adds it to rival_targets
+//scr_rival_seize_unit()
+// picks random guard, drone or robot not under player control
+// and adds it to rival_targets with reduced speed
 function scr_rival_seize_unit() {
-	//build pool of eligible units
 	var pool = ds_list_create(); 
 	
 	with (obj_securityGuard) {
 		if (id != global.possessed_unit && ds_list_find_index(global.rival_targets, id) < 0) 
+			ds_list_add(pool, id);
+	}
+	with (obj_workerDrone) {
+		if (id != global.possessed_unit && ds_list_find_index(global.rival_targets, id) < 0)
 			ds_list_add(pool, id);
 	}
 	with (obj_securityRobot) {
@@ -55,30 +61,50 @@ function scr_rival_seize_unit() {
 	var pick = pool[| irandom(ds_list_size(pool) - 1)];
 	ds_list_add(global.rival_targets, pick);
 	
-	//visual indicator: change to red on seized unit
+	//slow down seized unit
+	pick.move_speed *= 0.7;
+	pick.patrol_paused = true;
 	pick.image_blend = c_red;
-	pick.patrol_paused = true; //rival takes over movement via scr_rival_unit_pursue
 	
-	scr_hud_message("WARNING - RIVAL AI SEIZED A UNIT"); 
+	//stop current path
+	with (pick) path_end();
+	
+	scr_hud_message("WARNING - RIVAL AI SEIZED A UNIT");
 	ds_list_destroy(pool);
 }
 
 //scr_rival_unit_pursue(unit_inst, locus_inst)
-// moves rival-controlled unit towards players position
-function scr_rival_unit_persue(unit_inst, locus_inst) {
+// moves rival controlled unit toward locus position
+// triggers alert if unit has line of sight to locus
+function scr_rival_unit_pursue(unit_inst, locus_inst) {
+	//get target position - use host position if possessed
 	var tx = (global.possessed_unit != noone) ? global.possessed_unit.x : locus_inst.x;
 	var ty = (global.possessed_unit != noone) ? global.possessed_unit.y : locus_inst.y;
-	var dist = point_distance(unit_inst.x, unit_inst.y, tx, ty); 
-	var spd = unit_inst.move_speed; 
 	
-	//stop just before contact so player can counter-possess
-	if (dist > 40) {
+	var dist = point_distance(unit_inst.x, unit_inst.y, tx, ty);
+	var spd = unit_inst.move_speed;
+	
+	//move toward locus with wall collision
+	if (dist > 32) {
 		var dir = point_direction(unit_inst.x, unit_inst.y, tx, ty);
-		unit_inst.x += lengthdir_x(spd, dir);
-		unit_inst.y += lengthdir_y(spd, dir);
-	} else {
-		//contact - force eject the player from current host
-		scr_force_eject(locus_inst);
+		var dx = lengthdir_x(spd, dir);
+		var dy = lengthdir_y(spd, dir);
+		
+		if (!place_meeting(unit_inst.x + dx, unit_inst.y, obj_wall)) {
+			unit_inst.x += dx;
+		}
+		if (!place_meeting(unit_inst.x, unit_inst.y + dy, obj_wall)) {
+			unit_inst.y += dy;
+		}
+		
+		unit_inst.direction = dir;
+	}
+	
+	//check line of sight to trigger alert
+	if (scr_unit_sees_locus7(unit_inst, locus_inst)) {
+		global.alert_level = 2;
+		global.alert_timer = 300;
+		scr_hud_message("!!! RIVAL UNIT HAS SPOTTED LOCUS-7 !!!");
 	}
 }
 

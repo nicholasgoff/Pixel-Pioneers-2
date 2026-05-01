@@ -39,3 +39,13 @@ if (is_possessed) {
 } else {
 	image_blend = c_white;
 }
+
+//flip sprite based on movement direction
+if (speed > 0) {
+	var dir = direction;
+	if (dir > 90 && dir < 270) {
+		image_xscale = -1; //facing left
+	} else {
+		image_xscale = 1; //facing right
+	}
+}
