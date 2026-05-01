@@ -1,10 +1,9 @@
-//obj_workerDrone Create event
-//patrol
-patrol_points = [[0,0],[0,0]]; //override in room editor creation code per drone
-patrol_index = 0;
-patrol_speed = 3; //slightly faster than guard
+patrol_path = -1;  //assign in room editor creation code
+patrol_speed = 2;  //adjust per unit type
 patrol_paused = false;
 return_timer = 0;
+patrol_resume = false;
+patrol_path_pos = 0;
 
 //possession
 is_possessed = false;

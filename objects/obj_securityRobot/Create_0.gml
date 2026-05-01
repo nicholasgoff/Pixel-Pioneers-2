@@ -1,11 +1,9 @@
-//obj_securityRobot Create event
-//patrol
-patrol_points = [[0,0],[0,0]]; //override in room editor creation code per robot
-patrol_index = 0;
-patrol_speed = 1; //slowest unit - heavy
+patrol_path = -1;  //assign in room editor creation code
+patrol_speed = 0.5;  //adjust per unit type
 patrol_paused = false;
 return_timer = 0;
-
+patrol_resume = false;
+patrol_path_pos = 0;
 //possession
 is_possessed = false;
 possessed_blend = c_lime;

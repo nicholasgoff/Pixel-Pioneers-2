@@ -6,6 +6,7 @@
 function scr_try_possess(locus_inst) {
 	var POSSESS_RANGE = 64; //pixels from locus position
 	
+	//cannot possess while on full alert
 	if (global.alert_level >= 2) {
 		scr_hud_message("CANNOT POSSESS - FULL ALERT ACTIVE");
 		return false;
@@ -21,7 +22,6 @@ function scr_try_possess(locus_inst) {
 	repeat(array_length(unit_types)) {
 		var utype = unit_types[i];
 		with (utype) {
-			//measure distance from locus not mouse
 			var d = point_distance(locus_inst.x, locus_inst.y, x, y);
 			if (d < best_dist) {
 				//cannot possess a unit the rival AI owns
@@ -36,10 +36,14 @@ function scr_try_possess(locus_inst) {
 	
 	if (best == noone) return false;
 	
-	//Possess the unit
+	//Possess the unit - stop its path
 	global.possessed_unit = best;
-	best.is_possessed = true; 
-	best.patrol_paused = true; //freeze AI patrol while possessed
+	with (best) {
+		patrol_path_pos = path_position; //save current position on path
+		path_end();
+	}
+best.is_possessed = true; 
+best.patrol_paused = true; //freeze AI patrol while possessed
 	
 	//restore stamina to full when entering a new host
 	global.host_stamina = global.host_stamina_max; 
@@ -64,8 +68,9 @@ function scr_release_host(locus_inst) {
 	locus_inst.y = host.y;
 	locus_inst.visible = true;
 	
-	//Host resumes patrol after a short delay
-	host.is_possessed = false; 
+	//Host resumes patrol after a short delay via return_timer
+	host.is_possessed = false;
+	host.patrol_paused = true;
 	host.return_timer = 180; //3 seconds at 60 fps before patrol resumes
 	
 	global.possessed_unit = noone;

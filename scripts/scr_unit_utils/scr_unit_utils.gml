@@ -8,31 +8,42 @@
 //    inst.return_timer  - countdown before resuming release
 function scr_patrol_step(inst) {
 	if (inst.patrol_paused) {
-		if (inst.return_timer > 0) {
-			inst.return_timer--;
-		} else {
-			inst.patrol_paused = false;
+		//check if still being intimidated by a robot
+		var nearest_robot = instance_nearest(inst.x, inst.y, obj_securityRobot);
+		var still_intimidated = false;
+		if (nearest_robot != noone) {
+			if (point_distance(inst.x, inst.y, nearest_robot.x, nearest_robot.y) < nearest_robot.intimidate_range) {
+				still_intimidated = true;
+				inst.return_timer = 120;
+			}
 		}
-		return;
+		
+		if (!still_intimidated) {
+			if (inst.return_timer > 0) {
+				inst.return_timer--;
+			} else {
+				inst.patrol_paused = false;
+				inst.patrol_resume = true;
+				//only start path if one is assigned
+				if (inst.patrol_path != -1) {
+					with (inst) {
+						path_start(patrol_path, patrol_speed, 1, true);
+					}
+				}
+			}
+		}
 	}
 	
-	var target_x = inst.patrol_points[inst.patrol_index][0];
-	var target_y = inst.patrol_points[inst.patrol_index][1];
-	var dist = point_distance(inst.x, inst.y, target_x, target_y);
-	
-	if (dist < inst.patrol_speed) {
-		//arrived - advance to next waypoint
-		inst.x = target_x;
-		inst.y = target_y;
-		inst.patrol_index = (inst.patrol_index + 1) mod array_length(inst.patrol_points);
-	} else {
-		var dir = point_direction(inst.x, inst.y, target_x, target_y);
-		inst.x += lengthdir_x(inst.patrol_speed, dir);
-		inst.y += lengthdir_y(inst.patrol_speed, dir);
-		inst.image_angle = dir; // face direction of travel
+	//set path position on the frame after path_start
+	if (inst.patrol_resume) {
+		if (inst.patrol_path != -1) {
+			with (inst) {
+				path_position = patrol_path_pos;
+			}
+		}
+		inst.patrol_resume = false;
 	}
 }
-
 //scr_camera_sees(cam_inst, tx, ty)
 // returns true if point (tx, ty) is within the camera's cone of vision
 // cam_inst must have:
@@ -41,15 +52,16 @@ function scr_patrol_step(inst) {
 //  cam_inst.view_range - max distance in pixels
 function scr_camera_sees(cam_inst, tx, ty) {
 	if (cam_inst.is_disabled) return false;
+	
 	var dist = point_distance(cam_inst.x, cam_inst.y, tx, ty);
 	if (dist > cam_inst.view_range) return false; 
 	
 	var dir_to_target = point_direction(cam_inst.x, cam_inst.y, tx, ty);
-	var angle_diff = abs(angle_difference(dir_to_target, cam_inst.view_angle)); 
+	var angle_diff = abs(angle_difference(cam_inst.face_direction, dir_to_target)); 
 	
 	if (angle_diff > cam_inst.view_fov) return false; 
 	
-	// Line of sight check against walls
+	//line of sight check against walls
 	if (collision_line(cam_inst.x, cam_inst.y, tx, ty, obj_wall, false, false))
 		return false;
 	
@@ -70,7 +82,7 @@ function scr_unit_sees_locus7(guard_inst, locus_inst) {
 	if (dist > guard_inst.sight_range) return false;
 	
 	var dir_to_locus = point_direction(guard_inst.x, guard_inst.y, locus_inst.x, locus_inst.y);
-	var angle_diff = abs(angle_difference(dir_to_locus, guard_inst.image_angle));
+	var angle_diff = abs(angle_difference(dir_to_locus, guard_inst.direction));
 	
 	if (angle_diff > guard_inst.sight_angle) return false;
 	
