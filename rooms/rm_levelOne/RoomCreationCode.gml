@@ -12,7 +12,7 @@ global.rival_active = false;
 with (obj_locus7) { x = 100; y = 360; visible = true; }
 
 //Guard: simple 2 point patrol
-var g = instance_create_layer(400, 360, "Instances", obj_securityGaurd);
+var g = instance_create_layer(400, 360, "Instances", obj_securityGuard);
 with (g) {
 	patrol_points = [[300, 360], [550, 360]];
 	patrol_speed = move_speed;

@@ -16,6 +16,23 @@ if (global.possessed_unit == noone) {
 	//Inhabiting a host
 	scr_host_move(id);
 	
+	//drone abilities
+	if (global.possessed_unit.object_index == obj_workerDrone) {
+		//EMP on right click
+		if (mouse_check_button_pressed(mb_right) && global.possessed_unit.emp_cooldown <= 0) {
+			scr_drone_emp(global.possessed_unit);
+		}
+		if (global.possessed_unit.emp_cooldown > 0) global.possessed_unit.emp_cooldown--;
+		
+		//carry on F
+		if (keyboard_check_pressed(ord("F"))) {
+			scr_drone_carry(global.possessed_unit);
+		}
+		
+		//update carried object position
+		scr_drone_carry_update(global.possessed_unit);
+	}
+	
 	//interact on left-click
 	if (mouse_check_button_pressed(mb_left)) {
 		//in level 4: check if clicking the core terminal while inside

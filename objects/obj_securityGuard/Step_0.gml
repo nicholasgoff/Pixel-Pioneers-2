@@ -3,8 +3,8 @@ if (!is_possessed) {
 	
 	//detect locus7
 	var locus7 = instance_find(obj_locus7, 0);
-	if (instance_exists(locus7)) {
-		if (scr_guard_sees_locus7(id, locus7)) {
+	if (locus7 != noone) {
+		if (scr_unit_sees_locus7(id, locus7)) {
 			global.alert_level = 2; 
 			global.alert_timer = 300;
 			scr_hud_message("GUARD SPOTTED LOCUS7");

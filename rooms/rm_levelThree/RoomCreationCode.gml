@@ -21,7 +21,7 @@ var pts3 = [
 ];
 var i = 0;
 repeat (6) {
-	var gi = instance_create_layer(pts3[i][0][0], pts3[i][0][1], "Instances", obj_securityGaurd);
+	var gi = instance_create_layer(pts3[i][0][0], pts3[i][0][1], "Instances", obj_securityGuard);
 	gi.patrol_points = pts3[i];
 	i++
 }
