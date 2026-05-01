@@ -1,0 +1,1 @@
+path_start(path_guard1_patrol, move_speed, path_action_loop, true);
