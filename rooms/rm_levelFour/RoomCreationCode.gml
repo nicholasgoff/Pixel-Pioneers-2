@@ -11,11 +11,11 @@ scr_boss_init(); //sets rival_active = true, boss_hp = 3, phases
 with (obj_locus7) { x = 80; y = 360; visible = true; }
 
 // Gaurds (mix)
-var g1 = instance_create_layer(300, 200, "Instances", obj_securityGaurd);
+var g1 = instance_create_layer(300, 200, "Instances", obj_securityGuard);
 g1.patrol_points = [[200, 200], [500, 200]];
-var g2 = instance_create_layer(300, 520, "Instances", obj_securityGaurd);
+var g2 = instance_create_layer(300, 520, "Instances", obj_securityGuard);
 g2.patrol_points = [[200, 520], [500, 520]];
-var g3 = instance_create_layer(800, 360, "Instances", obj_securityGaurd);
+var g3 = instance_create_layer(800, 360, "Instances", obj_securityGuard);
 g3.patrol_points = [[700, 360], [1000, 360]]; 
 
 //Drone

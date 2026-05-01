@@ -40,6 +40,7 @@ function scr_patrol_step(inst) {
 //  cam_inst.view_fov - half-angle of cone
 //  cam_inst.view_range - max distance in pixels
 function scr_camera_sees(cam_inst, tx, ty) {
+	if (cam_inst.is_disabled) return false;
 	var dist = point_distance(cam_inst.x, cam_inst.y, tx, ty);
 	if (dist > cam_inst.view_range) return false; 
 	
@@ -50,6 +51,31 @@ function scr_camera_sees(cam_inst, tx, ty) {
 	
 	// Line of sight check against walls
 	if (collision_line(cam_inst.x, cam_inst.y, tx, ty, obj_wall, false, false))
+		return false;
+	
+	return true;
+}
+
+//scr_guard_sees_locus7(guard_inst, locus_inst)
+// returns true if the guard can see the free-roaming locus
+// uses the same cone logic as scr_camera_sees
+// guard_inst must have:
+//   guard_inst.sight_range - max detection distance in pixels
+//   guard_inst.sight_angle - half angle of vision cone in degrees
+function scr_unit_sees_locus7(guard_inst, locus_inst) {
+	//only detect free-roaming locus, not when inside a host
+	if (global.possessed_unit != noone) return false;
+	
+	var dist = point_distance(guard_inst.x, guard_inst.y, locus_inst.x, locus_inst.y);
+	if (dist > guard_inst.sight_range) return false;
+	
+	var dir_to_locus = point_direction(guard_inst.x, guard_inst.y, locus_inst.x, locus_inst.y);
+	var angle_diff = abs(angle_difference(dir_to_locus, guard_inst.image_angle));
+	
+	if (angle_diff > guard_inst.sight_angle) return false;
+	
+	//line of sight check against walls
+	if (collision_line(guard_inst.x, guard_inst.y, locus_inst.x, locus_inst.y, obj_wall, false, false))
 		return false;
 	
 	return true;
