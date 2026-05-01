@@ -89,6 +89,7 @@
     {"id":{"name":"spr_server_assets","path":"sprites/spr_server_assets/spr_server_assets.yy",},},
     {"id":{"name":"spr_terminal","path":"sprites/spr_terminal/spr_terminal.yy",},},
     {"id":{"name":"spr_tileset_serverRoom","path":"sprites/spr_tileset_serverRoom/spr_tileset_serverRoom.yy",},},
+    {"id":{"name":"spr_wall","path":"sprites/spr_wall/spr_wall.yy",},},
     {"id":{"name":"spr_workerDrone","path":"sprites/spr_workerDrone/spr_workerDrone.yy",},},
     {"id":{"name":"tile1","path":"sprites/tile1/tile1.yy",},},
     {"id":{"name":"Tile10","path":"sprites/Tile10/Tile10.yy",},},

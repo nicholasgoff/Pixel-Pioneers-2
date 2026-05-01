@@ -8,8 +8,13 @@ function scr_locus_free_move(inst) {
 	var dx = (keyboard_check(ord("D")) - keyboard_check(ord("A"))) * SPD;
 	var dy = (keyboard_check(ord("S")) - keyboard_check(ord("W"))) * SPD;
 	
-	inst.x += dx;
-	inst.y += dy;
+	//wall collision
+	if (!place_meeting(inst.x + dx, inst.y, obj_wall)) {
+		inst.x += dx;
+	}
+	if (!place_meeting(inst.x, inst.y + dy, obj_wall)) {
+		inst.y += dy;
+	}
 	
 	//keep locus inside room bounds
 	inst.x = clamp(inst.x, 8, room_width - 8); 

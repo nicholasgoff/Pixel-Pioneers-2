@@ -9,14 +9,19 @@ function scr_interact(host) {
 	var nearest_barrier = instance_nearest(host.x, host.y, obj_barrier);
 	var nearest_terminal = instance_nearest(host.x, host.y, obj_terminal);
 	
-	//Security Guard interactions
-	if (host.object_index == obj_securityGuard) {
-		//open keycard door
-		if (nearest_door != noone && point_distance(host.x, host.y, nearest_door.x, nearest_door.y) < INTERACT_RANGE) {
-			nearest_door.is_open = true;
-			nearest_door.solid = false;
-			scr_hud_message("ACCESS GRANTED");
-		}
+	if (instance_exists(obj_keycardDoor)) {
+    var door = instance_nearest(host.x, host.y, obj_keycardDoor);
+    if (door != noone && point_distance(host.x, host.y, door.x, door.y) < 48) {
+        // only guards can open keycard doors
+        if (host.object_index == obj_securityGuard) {
+            door.is_open = true;
+            door.solid = false;
+            door.visible = false;
+            scr_hud_message("KEYCARD ACCESS GRANTED");
+        } else {
+            scr_hud_message("KEYCARD REQUIRED");
+        }
+    }
 		//use terminal
 		else if (nearest_terminal != noone && point_distance(host.x, host.y, nearest_terminal.x, nearest_terminal.y) < INTERACT_RANGE) {
 			scr_use_terminal(nearest_terminal, host);

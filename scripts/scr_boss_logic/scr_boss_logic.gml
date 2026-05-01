@@ -30,7 +30,7 @@ function scr_boss_step(locus_inst) {
 	
 	//Rival units patrol towards player ghost
 	with (obj_rivalAi) {
-		scr_rival_unit_persue(id, locus_inst);
+		scr_rival_unit_pursue(id, locus_inst);
 	}
 }
 
@@ -41,6 +41,9 @@ function scr_boss_step(locus_inst) {
 // picks random guard, drone or robot not under player control
 // and adds it to rival_targets with reduced speed
 function scr_rival_seize_unit() {
+	//only seize if under the max units limit
+	if (ds_list_size(global.rival_targets) >= global.rival_max_units) return;
+	
 	var pool = ds_list_create(); 
 	
 	with (obj_securityGuard) {
@@ -61,12 +64,9 @@ function scr_rival_seize_unit() {
 	var pick = pool[| irandom(ds_list_size(pool) - 1)];
 	ds_list_add(global.rival_targets, pick);
 	
-	//slow down seized unit
 	pick.move_speed *= 0.7;
 	pick.patrol_paused = true;
 	pick.image_blend = c_red;
-	
-	//stop current path
 	with (pick) path_end();
 	
 	scr_hud_message("WARNING - RIVAL AI SEIZED A UNIT");
@@ -77,30 +77,27 @@ function scr_rival_seize_unit() {
 // moves rival controlled unit toward locus position
 // triggers alert if unit has line of sight to locus
 function scr_rival_unit_pursue(unit_inst, locus_inst) {
-	//get target position - use host position if possessed
 	var tx = (global.possessed_unit != noone) ? global.possessed_unit.x : locus_inst.x;
 	var ty = (global.possessed_unit != noone) ? global.possessed_unit.y : locus_inst.y;
 	
 	var dist = point_distance(unit_inst.x, unit_inst.y, tx, ty);
-	var spd = unit_inst.move_speed;
 	
-	//move toward locus with wall collision
-	if (dist > 32) {
-		var dir = point_direction(unit_inst.x, unit_inst.y, tx, ty);
-		var dx = lengthdir_x(spd, dir);
-		var dy = lengthdir_y(spd, dir);
-		
-		if (!place_meeting(unit_inst.x + dx, unit_inst.y, obj_wall)) {
-			unit_inst.x += dx;
-		}
-		if (!place_meeting(unit_inst.x, unit_inst.y + dy, obj_wall)) {
-			unit_inst.y += dy;
-		}
-		
-		unit_inst.direction = dir;
+	// recalculate path every 60 frames or when they have none
+	if (!variable_instance_exists(unit_inst, "nav_path")) {
+		unit_inst.nav_path = path_add();
+		unit_inst.nav_timer = 0;
 	}
 	
-	//check line of sight to trigger alert
+	unit_inst.nav_timer--;
+	if (unit_inst.nav_timer <= 0) {
+		unit_inst.nav_timer = 60;
+		mp_grid_path(global.nav_grid, unit_inst.nav_path, unit_inst.x, unit_inst.y, tx, ty, true);
+		with (unit_inst) {
+			path_start(unit_inst.nav_path, unit_inst.move_speed, path_action_stop, false);
+		}
+	}
+	
+	// check line of sight to trigger alert
 	if (scr_unit_sees_locus7(unit_inst, locus_inst)) {
 		global.alert_level = 2;
 		global.alert_timer = 300;

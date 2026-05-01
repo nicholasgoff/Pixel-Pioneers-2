@@ -1,6 +1,3 @@
-x = clamp(x, 8, room_width - 8);
-y = clamp(y, 8, room_height - 8);
-
 if (!is_possessed) {
 	scr_patrol_step(id);
 	
@@ -16,13 +13,8 @@ if (!is_possessed) {
 	
 	//rival AI override (level 3+) 
 	if (global.rival_active && ds_list_find_index(global.rival_targets, id) >= 0) {
-		//movement handled by scr_rival_unit_pursue in scr_boss_step
 		patrol_paused = true; 
 	}
-}
-
-if (place_meeting(x, y, obj_wall)) {
-    show_debug_message("WALL DETECTED");
 }
 
 //intimidation - robot forces guard off path
@@ -39,13 +31,10 @@ if (nearest_robot != noone) {
 		
 		path_end();
 		
-		//push guard away from robot with manual wall collision
 		var push_dir = point_direction(nearest_robot.x, nearest_robot.y, x, y);
 		var push_spd = 2;
 		
-		//move one pixel at a time to prevent clipping
-		var steps = push_spd;
-		repeat(steps) {
+		repeat(push_spd) {
 			var ddx = lengthdir_x(1, push_dir);
 			var ddy = lengthdir_y(1, push_dir);
 			
@@ -58,23 +47,29 @@ if (nearest_robot != noone) {
 		}
 	}
 }
-	
-	//green tint when possessed, red when rival-controlled
-	if (is_possessed) {
-		image_blend = possessed_blend; 
-	} else if (global.rival_active && ds_list_find_index(global.rival_targets, id) >= 0) {
-		image_blend = c_red;
-	} else {
-		image_blend = c_white;
-	}
-	
+
+//green tint when possessed, red when rival-controlled
+if (is_possessed) {
+	image_blend = possessed_blend; 
+} else if (global.rival_active && ds_list_find_index(global.rival_targets, id) >= 0) {
+	image_blend = c_red;
+} else {
+	image_blend = c_white;
+}
+
 //flip sprite and update image_angle based on movement direction
 if (speed > 0) {
 	var dir = direction;
-	image_angle = dir; //keep image_angle synced to movement direction
+	image_angle = dir;
 	if (dir > 90 && dir < 270) {
-		image_xscale = -1; //facing left
+		image_xscale = -1;
 	} else {
-		image_xscale = 1; //facing right
+		image_xscale = 1;
 	}
+}
+
+//keep unit inside room bounds
+if (place_meeting(x, y, obj_wall)) {
+    x = xprevious;
+    y = yprevious;
 }
