@@ -1,0 +1,21 @@
+{
+  "$GMPath":"",
+  "%Name":"path_guard1_patrol",
+  "closed":true,
+  "kind":1,
+  "name":"path_guard1_patrol",
+  "parent":{
+    "name":"Paths",
+    "path":"folders/Paths.yy",
+  },
+  "points":[
+    {"speed":100.0,"x":127.0,"y":66.99805,},
+    {"speed":100.0,"x":127.0,"y":256.99805,},
+    {"speed":100.0,"x":225.0,"y":385.99805,},
+    {"speed":100.0,"x":223.0,"y":479.99805,},
+    {"speed":100.0,"x":127.0,"y":511.99805,},
+  ],
+  "precision":4,
+  "resourceType":"GMPath",
+  "resourceVersion":"2.0",
+}
