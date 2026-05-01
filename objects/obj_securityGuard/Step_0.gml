@@ -1,3 +1,6 @@
+x = clamp(x, 8, room_width - 8);
+y = clamp(y, 8, room_height - 8);
+
 if (!is_possessed) {
 	scr_patrol_step(id);
 	

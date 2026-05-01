@@ -1,3 +1,6 @@
+x = clamp(x, 8, room_width - 8);
+y = clamp(y, 8, room_height - 8);
+
 //obj_workerDrone Step event
 if (!is_possessed) {
 	//patrol

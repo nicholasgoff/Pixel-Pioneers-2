@@ -76,11 +76,13 @@ function scr_host_move(ghost_inst) {
 //scr_ghost_camera_check(locus_inst)
 // if locus is in free-roam and inside a camera cone, trigger alert penalty
 function scr_ghost_camera_check(locus_inst) {
-	if (global.possessed_unit != noone) return; //only matters when free
+	if (global.possessed_unit != noone) return;
+	
+	//only run if cameras exist in the room
+	if (!instance_exists(obj_camera)) return;
 	
 	with (obj_camera) {
 		if (scr_camera_sees(id, locus_inst.x, locus_inst.y)) {
-			//being seen in unpossessed form triggers an alert immediately
 			global.alert_level = 2;
 			global.alert_timer = 300; 
 			scr_hud_message("!!! LOCUS DETECTED BY CAMERA !!!");

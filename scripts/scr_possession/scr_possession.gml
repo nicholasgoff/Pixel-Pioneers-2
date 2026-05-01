@@ -2,30 +2,32 @@
 
 //scr_try_possess(locus_inst)
 // called when player left clicks while in ghost form
-// find a possessable unit within range and takes it over
+// find a possessable unit within range of locus and takes it over
 function scr_try_possess(locus_inst) {
-	var POSSESS_RANGE = 64; //pixels
+	var POSSESS_RANGE = 64; //pixels from locus position
+	
+	if (global.alert_level >= 2) {
+		scr_hud_message("CANNOT POSSESS - FULL ALERT ACTIVE");
+		return false;
+	}
 	
 	//scan all possessable unit types
 	var unit_types = [obj_securityGuard, obj_workerDrone, obj_securityRobot];
 	var best = noone; 
 	var best_dist = POSSESS_RANGE; 
 	
-	//room-space mouse coords
-	var mx = mouse_x;
-	var my = mouse_y;
-	
+	//loop through all unit types and find closest to locus
 	var i = 0;
 	repeat(array_length(unit_types)) {
 		var utype = unit_types[i];
-		var inst = instance_nearest(mx, my, utype);
-		if (inst != noone) {
-			var d = point_distance(mx, my, inst.x, inst.y);
+		with (utype) {
+			//measure distance from locus not mouse
+			var d = point_distance(locus_inst.x, locus_inst.y, x, y);
 			if (d < best_dist) {
 				//cannot possess a unit the rival AI owns
-				if (ds_list_find_index(global.rival_targets, inst) < 0 || !global.rival_active) {
+				if (ds_list_find_index(global.rival_targets, id) < 0 || !global.rival_active) {
 					best_dist = d;
-					best = inst;
+					best = id;
 				}
 			}
 		}

@@ -14,11 +14,3 @@ if (!is_possessed) {
 	draw_set_alpha(1); 
 	draw_set_colour(c_white); 
 }
-
-//Draw Unit label when possessed 
-if (is_possessed) { 
-	draw_set_halign(fa_center);
-	draw_set_colour(c_lime); 
-	draw_text(x, y - sprite_height * 0.75, unit_name); 
-	draw_set_colour(c_white);
-}
