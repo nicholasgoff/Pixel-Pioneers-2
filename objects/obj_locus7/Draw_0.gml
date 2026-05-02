@@ -1,6 +1,6 @@
 //Apply shader if in free roam form
 if (global.possessed_unit == noone) {
-	
+	draw_self()
 	var threat = 0;
 	
 	//Check Cameras
@@ -46,6 +46,5 @@ if (global.possessed_unit == noone) {
 	draw_self(); 
 	shader_reset();
 } else {
-	//inside host - no shader
-	draw_self();
+	
 }
