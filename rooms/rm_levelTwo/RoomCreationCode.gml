@@ -9,15 +9,15 @@ global.rival_active = false;
 with (obj_locus7) { x = 80; y = 360; visible = true; }
 
 //Gaurd 1 - horizontal patrol near entrance 
-var g1 = instance_create_layer(250, 360, "Instances", obj_guard);
+var g1 = instance_create_layer(250, 360, "Instances", obj_securityGuard);
 with (g1) { patrol_points = [[200, 360], [450, 360]]; image_angle = 0; }
 
 //Gaurd 2 - vertical patrol mid room 
-var g2 = instance_create_layer(640, 200, "Instances", obj_guard); 
+var g2 = instance_create_layer(640, 200, "Instances", obj_securityGuard); 
 with (g2) { patrol_points = [[640, 150], [640, 450]]; image_angle = 270; }
 
 //Gaurd 3 - horizonatal near exit
-var g3 = instance_create_layer(900, 500, "Instances", obj_guard);
+var g3 = instance_create_layer(900, 500, "Instances", obj_securityGuard);
 with (g3) { patrol_points = [[800, 500], [1100, 500]]; image_angle = 0; }
 
 //camera 1: watches first corridor
