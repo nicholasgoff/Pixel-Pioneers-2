@@ -1,0 +1,12 @@
+{
+  "$GMShader":"",
+  "%Name":"shd_detection_pulse",
+  "name":"shd_detection_pulse",
+  "parent":{
+    "name":"Shaders",
+    "path":"folders/Shaders.yy",
+  },
+  "resourceType":"GMShader",
+  "resourceVersion":"2.0",
+  "type":1,
+}

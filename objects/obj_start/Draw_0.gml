@@ -33,11 +33,11 @@ if (menu == "main") {
 if (menu == "instructions") {
     draw_text(cx, cy - 100, "Instructions:");
 	draw_set_halign(fa_left);
-    draw_text(cx - 400, cy, "- PlaceHolder -");
-	draw_text(cx - 400, cy + 80, "- PlaceHolder -");
-    draw_text(cx - 400, cy + 160, "- PlaceHolder -");
-	draw_text(cx - 400, cy + 240, "- PlaceHolder -");
-	draw_text(cx - 400, cy + 320, "- PlaceHolder -");
+    draw_text(cx - 400, cy, "WASD - Move current Host");
+	draw_text(cx - 400, cy + 80, "Left Click - Possess nearby unit / interact");
+    draw_text(cx - 400, cy + 160, "E - Release current host");
+	draw_text(cx - 400, cy + 240, "Right Click - EMP Pulse (Drone Only)");
+	draw_text(cx - 400, cy + 320, "F - Pick up / drop object (Drone Only");
 	draw_set_halign(fa_center);
 	
     

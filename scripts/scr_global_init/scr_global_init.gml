@@ -29,9 +29,16 @@ function scr_global_init(){
 	// HUD / UI
 	global.hud_message = ""; //bottom screen text
 	global.hud_msg_timer = 0; //frames remaining to show message
+	global.points = 0; 
 	
 	// Stamina (used by guards and robots when sprinting)
 	global.host_stamina = 100;
 	global.host_stamina_max = 100;
+	
+	//Particle System
+	global.particle_system = -1;
+	global.particle_type = -1;
+	
+	
 	
 }
