@@ -1,17 +1,18 @@
 {
   "$GMObject":"",
-  "%Name":"obj_wall_btn",
-  "eventList":[
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-  ],
+  "%Name":"obj_elevator_door",
+  "eventList":[],
   "managed":true,
-  "name":"obj_wall_btn",
+  "name":"obj_elevator_door",
   "overriddenProperties":[],
   "parent":{
     "name":"Objects",
     "path":"folders/Objects.yy",
   },
-  "parentObjectId":null,
+  "parentObjectId":{
+    "name":"obj_door_parent",
+    "path":"objects/obj_door_parent/obj_door_parent.yy",
+  },
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,
@@ -30,8 +31,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_wall_btn",
-    "path":"sprites/spr_wall_btn/spr_wall_btn.yy",
+    "name":"spr_elevator_door",
+    "path":"sprites/spr_elevator_door/spr_elevator_door.yy",
   },
   "spriteMaskId":null,
   "visible":true,

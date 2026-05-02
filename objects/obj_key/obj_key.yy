@@ -1,11 +1,9 @@
 {
   "$GMObject":"",
-  "%Name":"obj_wall_btn",
-  "eventList":[
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-  ],
+  "%Name":"obj_key",
+  "eventList":[],
   "managed":true,
-  "name":"obj_wall_btn",
+  "name":"obj_key",
   "overriddenProperties":[],
   "parent":{
     "name":"Objects",
@@ -30,8 +28,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_wall_btn",
-    "path":"sprites/spr_wall_btn/spr_wall_btn.yy",
+    "name":"spr_key",
+    "path":"sprites/spr_key/spr_key.yy",
   },
   "spriteMaskId":null,
   "visible":true,
