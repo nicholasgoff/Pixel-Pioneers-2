@@ -25,7 +25,7 @@
   ],
   "name":"spr_door",
   "nineSlice":null,
-  "origin":7,
+  "origin":4,
   "parent":{
     "name":"Sprites",
     "path":"folders/Sprites.yy",
@@ -84,7 +84,7 @@
     "visibleRange":null,
     "volume":1.0,
     "xorigin":4,
-    "yorigin":82,
+    "yorigin":41,
   },
   "swatchColours":null,
   "swfPrecision":0.5,

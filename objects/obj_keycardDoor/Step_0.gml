@@ -1,17 +1,27 @@
 //obj_keycardDoor Step event
-if (is_open) {
-    solid = false;
-    //reset door if no guard is nearby
-    //doors stay open permanently once opened
+var nearest_guard = instance_nearest(x, y, obj_securityGuard);
+var guard_close = false;
+
+if (nearest_guard != noone) {
+	if (point_distance(x, y, nearest_guard.x, nearest_guard.y) < 64) {
+		guard_close = true;
+	}
 }
 
-// block locus7 ghost from passing through
-if (place_meeting(x, y, obj_locus7)) {
-    if (global.possessed_unit == noone) {
-        // push locus back
-        with (obj_locus7) {
-            x = xprevious;
-            y = yprevious;
-        }
-    }
+//open if guard is close or door was manually opened via interact
+if (guard_close || is_open) {
+	solid = false;
+	if (image_index < image_number - 1) {
+		image_speed = 1; //play forward
+	} else {
+		image_speed = 0; //freeze at last frame
+	}
+} else {
+	//play in reverse when guard walks away
+	if (image_index > 0) {
+		image_speed = -1; //play backward
+	} else {
+		image_speed = 0; //freeze at first frame
+		solid = true;
+	}
 }

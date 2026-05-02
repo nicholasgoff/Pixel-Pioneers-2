@@ -14,7 +14,7 @@ function scr_global_init(){
 	global.locus_y = 0; 
 	
 	//level / progression
-	global.current_level = 1; // 1-4
+	global.current_level = 0; // 0-3
 	global.level_complete = false;
 	
 	//AI Systems 
