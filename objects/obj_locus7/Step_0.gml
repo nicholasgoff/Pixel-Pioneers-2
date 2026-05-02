@@ -62,3 +62,42 @@ if (global.possessed_unit == noone) {
 if (global.current_level == 4 && global.rival_active) {
 	scr_boss_step(id);
 }
+
+//Cheat Codes
+if (keyboard_check(vk_control)) {
+	
+	//ctrl + h : restore full health
+	if (keyboard_check_pressed(ord("H"))) {
+		global.locus_hp = global.locus_hp_max;
+		scr_hud_message("CHEAT: HEALTH RESTORED");
+	}
+	
+	//crtl + n : skip to next level
+	if (keyboard_check_pressed(ord("N"))) {
+		global.level_complete = true; 
+		alarm[0] = 1; 
+		scr_hud_message("CHEAT: NEXT LEVEL");
+	}
+	
+	//crtl + t : clear all alerts
+	if (keyboard_check_pressed(ord("T"))) {
+		global.alert_level = 0;
+		global.alert_timer = 0;
+		scr_hud_message("CHEAT: ALERTS CLEARED");
+	}
+	
+	//crtl + k : disable all cameras for 10 seconds
+	if (keyboard_check_pressed(ord("K"))) { 
+		with(obj_camera) {
+			is_disabled = true; 
+			disable_timer = 600;
+		}
+		scr_hud_message("CHEAT: CAMERAS DISABLED");
+	}
+	
+	//crtl + p : full stamia
+	if (keyboard_check_pressed(ord("P"))) {
+		global.host_stamina = global.host_stamina_max;
+		scr_hud_message("CHEAT: STAMINA RESTORED");
+	}
+}
