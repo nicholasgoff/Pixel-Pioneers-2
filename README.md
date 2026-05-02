@@ -72,6 +72,18 @@ Hold Ctrl and press the corresponding key:
         Ctrl + P - Restore full stamina
 
 =================================================
+ITCS-5230 FEATURES
+=================================================
+    -Path : implemented into rm_tutorial using path_guard1_patrol
+    -Particles : coded into scr_possession inside scr_try_possess (green particles) and scr_force_eject (red particles)
+    -Shader : change colors when being detected (shd_detection_pulse)
+    -Views : viewport0 follows obj_locus7 and viewport1 creates a minimap
+    -Object Inheritance : Door parent object to control functionality of all doors across maps
+    -Tutorial level : rm_tutorial provides player with how to play the game (level = easy)
+    -Smart opponents/AI : final level the enemy can control other units (same as you) making the level harder
+
+
+=================================================
 LICENSING INFORMATION
 =================================================
 This game was developed using GameMaker Studio 2. 
