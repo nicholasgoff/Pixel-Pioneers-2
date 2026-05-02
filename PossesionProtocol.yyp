@@ -90,6 +90,7 @@
     {"id":{"name":"spr_door","path":"sprites/spr_door/spr_door.yy",},},
     {"id":{"name":"spr_door2","path":"sprites/spr_door2/spr_door2.yy",},},
     {"id":{"name":"spr_door3","path":"sprites/spr_door3/spr_door3.yy",},},
+    {"id":{"name":"spr_elevator_door","path":"sprites/spr_elevator_door/spr_elevator_door.yy",},},
     {"id":{"name":"spr_fire","path":"sprites/spr_fire/spr_fire.yy",},},
     {"id":{"name":"spr_keycard","path":"sprites/spr_keycard/spr_keycard.yy",},},
     {"id":{"name":"spr_locus7","path":"sprites/spr_locus7/spr_locus7.yy",},},
