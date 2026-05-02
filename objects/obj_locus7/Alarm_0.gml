@@ -5,5 +5,5 @@ switch (global.current_level) {
 	case 3: room_goto(rm_levelThree); break; 
 	default: 
 		//shouldn't happen - lvl 4 uses alarm[1] for win
-		room_goto(rm_levelOne);
+		room_goto(rm_win);
 }
