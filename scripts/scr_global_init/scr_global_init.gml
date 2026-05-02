@@ -39,6 +39,10 @@ function scr_global_init(){
 	global.particle_system = -1;
 	global.particle_type = -1;
 	
+	global.fading = false;
+	global.fade_alpha = 0;
+	global.fade_speed = 0.02;
+	
 	
 	
 }

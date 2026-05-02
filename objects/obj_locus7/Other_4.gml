@@ -12,6 +12,8 @@ global.possessed_unit = noone;
 global.locus_hp = global.locus_hp_max;
 global.locus_drain_timer = 0;
 global.locus_regen_timer = 0;
+global.fading = false;
+global.fade_alpha = 0;
 visible = true;
 
 with (obj_camera) {
