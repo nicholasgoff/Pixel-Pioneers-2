@@ -79,6 +79,8 @@ GameMaker Studio 2 is developed by YoYo Games.
 https://gamemaker.io
 
 TILE ASSETS: 
+    All interior and exterior tiles used were developed by Limezu in their modern interiors pack
+    https://limezu.itch.io/moderninteriors
 
 CONCEPT AND CHARACTER ART: 
     All concept art was generated using Google Gemini AI image generation. 
@@ -90,6 +92,9 @@ FONTS:
     No third-party font licensing required. 
 
 SOUND AND MUSIC: 
+    background music - https://www.fesliyanstudios.com/royalty-free-music/download/8-bit-adventure/2282
+    spotted, possesion effects - https://brackeysgames.itch.io/brackeys-platformer-bundle
+    door effects - https://leohpaz.itch.io/minifantasy-dungeon-sfx-pack
 
 =================================================
 ACADEMIC INTEGRITY STATEMENT
