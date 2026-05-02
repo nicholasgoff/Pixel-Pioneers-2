@@ -49,7 +49,7 @@ best.patrol_paused = true; //freeze AI patrol while possessed
 	global.host_stamina = global.host_stamina_max; 
 	
 	//visual: locus snaps to host position (hidden in host mode)
-	locus_inst.visible = false;
+
 	
 	//Possession Particle Burst (Advanced Feature)
 	//Clean up any previous particle system first
@@ -95,7 +95,7 @@ function scr_release_host(locus_inst) {
 	//Return locus to host position before detaching
 	locus_inst.x = host.x;
 	locus_inst.y = host.y;
-	locus_inst.visible = true;
+
 	
 	var release_x = host.x; 
 	var release_y = host.y;
