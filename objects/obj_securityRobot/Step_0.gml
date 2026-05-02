@@ -5,15 +5,30 @@ if (!is_possessed) {
 	//patrol
 	scr_patrol_step(id);
 	
-	//detect free-roaming locus
-	var locus7 = instance_find(obj_locus7, 0);
-	if (locus7 != noone) {
-		if (scr_unit_sees_locus7(id, locus7)) {
-			global.alert_level = 2; 
-			global.alert_timer = 300;
-			scr_hud_message("!!! ROBOT SPOTTED LOCUS-7 !!!");
-		}
-	}
+	//detect locus7
+var locus7 = instance_find(obj_locus7, 0);
+if (locus7 != noone) {
+    if (scr_unit_sees_locus7(id, locus7)) {
+        locus_sight_timer++;
+        
+        if (locus_sight_timer >= ALERT_THRESHOLD) {
+            //seen for 2 seconds - full alert
+            global.alert_level = 2;
+            global.alert_timer = 300;
+            scr_hud_message("!!! ROBOT LOCKED ON LOCUS-7 !!!");
+        } else {
+            //just spotted - suspicious
+            if (global.alert_level < 1) {
+                global.alert_level = 1;
+                global.alert_timer = 300;
+                scr_hud_message("ROBOT DETECTING ANOMALY...");
+            }
+        }
+    } else {
+        //lost sight - reset timer
+        locus_sight_timer = 0;
+    }
+}
 	
 	//rival AI override (level 3+)
 	if (global.rival_active && ds_list_find_index(global.rival_targets, id) >= 0) {

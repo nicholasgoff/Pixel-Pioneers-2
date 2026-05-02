@@ -1,0 +1,1 @@
+linked_door = inst_6EAFC939

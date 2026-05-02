@@ -14,6 +14,7 @@ can_sprint = false; //robots don't sprint
 //vision
 sight_range = 120;
 sight_angle = 35; //narrower cone than guard, 70 degrees total
-
+locus_sight_timer = 0;
+ALERT_THRESHOLD = 120; //2 seconds at 60fps
 //robot specific
 intimidate_range = 80; //distance at which guards move aside

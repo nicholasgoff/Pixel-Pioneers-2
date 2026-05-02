@@ -14,7 +14,8 @@ can_sprint = true;
 //vision
 sight_range = 150;
 sight_angle = 45; //half angle - total cone is 90 degrees
-
+locus_sight_timer = 0;
+ALERT_THRESHOLD = 120; //2 seconds at 60fps
 //stats
 stamina = 100;
 stamina_max = 100;
