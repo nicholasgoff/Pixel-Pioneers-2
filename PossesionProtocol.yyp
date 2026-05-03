@@ -102,6 +102,7 @@
     {"id":{"name":"spr_keycard","path":"sprites/spr_keycard/spr_keycard.yy",},},
     {"id":{"name":"spr_laser","path":"sprites/spr_laser/spr_laser.yy",},},
     {"id":{"name":"spr_locus7","path":"sprites/spr_locus7/spr_locus7.yy",},},
+    {"id":{"name":"spr_locus7Alt","path":"sprites/spr_locus7Alt/spr_locus7Alt.yy",},},
     {"id":{"name":"spr_main_terminal","path":"sprites/spr_main_terminal/spr_main_terminal.yy",},},
     {"id":{"name":"spr_monitors","path":"sprites/spr_monitors/spr_monitors.yy",},},
     {"id":{"name":"spr_next_level","path":"sprites/spr_next_level/spr_next_level.yy",},},
