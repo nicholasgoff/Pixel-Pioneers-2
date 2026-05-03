@@ -32,8 +32,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_workerDrone",
-    "path":"sprites/spr_workerDrone/spr_workerDrone.yy",
+    "name":"spr_securityRobot",
+    "path":"sprites/spr_securityRobot/spr_securityRobot.yy",
   },
   "spriteMaskId":null,
   "visible":true,
