@@ -1,1 +1,1 @@
-showing_help = (point_distance(x, y, obj_locus7.x, obj_locus7.y) < 40);
+showing_help = (point_distance(x, y, obj_locus7.x, obj_locus7.y) < 40)

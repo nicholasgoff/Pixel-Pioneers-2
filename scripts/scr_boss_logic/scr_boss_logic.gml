@@ -82,7 +82,7 @@ function scr_rival_unit_pursue(unit_inst, locus_inst) {
 	
 	var dist = point_distance(unit_inst.x, unit_inst.y, tx, ty);
 	
-	// recalculate path every 60 frames or when they have none
+	//create path if it doesnt exist
 	if (!variable_instance_exists(unit_inst, "nav_path")) {
 		unit_inst.nav_path = path_add();
 		unit_inst.nav_timer = 0;
@@ -93,18 +93,22 @@ function scr_rival_unit_pursue(unit_inst, locus_inst) {
 		unit_inst.nav_timer = 60;
 		mp_grid_path(global.nav_grid, unit_inst.nav_path, unit_inst.x, unit_inst.y, tx, ty, true);
 		with (unit_inst) {
-			path_start(unit_inst.nav_path, unit_inst.move_speed, path_action_stop, false);
+			path_start(nav_path, move_speed, 1, false);
 		}
 	}
 	
-	// check line of sight to trigger alert
+	//check line of sight to trigger alert
 	if (scr_unit_sees_locus7(unit_inst, locus_inst)) {
 		global.alert_level = 2;
 		global.alert_timer = 300;
 		scr_hud_message("!!! RIVAL UNIT HAS SPOTTED LOCUS-7 !!!");
 	}
+	
+	//contact - force eject
+	if (dist < 32) {
+		scr_force_eject(locus_inst);
+	}
 }
-
 //scr_boss_redirect_unit(locus_inst)
 // called when player possesses rival unit and left clicks the uplink terminal. 
 // this is the 'turn rival against boss' mechanic
