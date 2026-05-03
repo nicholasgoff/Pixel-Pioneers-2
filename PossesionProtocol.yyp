@@ -110,6 +110,7 @@
     {"id":{"name":"spr_rivalAi","path":"sprites/spr_rivalAi/spr_rivalAi.yy",},},
     {"id":{"name":"spr_room_ts","path":"sprites/spr_room_ts/spr_room_ts.yy",},},
     {"id":{"name":"spr_securityGuard","path":"sprites/spr_securityGuard/spr_securityGuard.yy",},},
+    {"id":{"name":"spr_securityGuardAlt","path":"sprites/spr_securityGuardAlt/spr_securityGuardAlt.yy",},},
     {"id":{"name":"spr_securityRobot_possessed","path":"sprites/spr_securityRobot_possessed/spr_securityRobot_possessed.yy",},},
     {"id":{"name":"spr_securityRobot","path":"sprites/spr_securityRobot/spr_securityRobot.yy",},},
     {"id":{"name":"spr_server_assets","path":"sprites/spr_server_assets/spr_server_assets.yy",},},
