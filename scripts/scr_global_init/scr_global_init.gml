@@ -8,6 +8,8 @@ function scr_global_init(){
 	global.locus_regen_timer = 0;
 	global.locus_drain_timer = 0;
 	REGEN_THRESHOLD = 600;
+	global.points = 0
+	global.alert_points_deducted = false
 	//Core possession state
 	global.possessed_unit = noone; //instance currently inhabited
 	global.locus_x = 0; //locus world position (synced when free)
@@ -42,7 +44,11 @@ function scr_global_init(){
 	global.fading = false;
 	global.fade_alpha = 0;
 	global.fade_speed = 0.02;
+	global.has_key = false;
 	
+	if (!audio_is_playing(snd_bkg_music)) {
+    audio_play_sound(snd_bkg_music, 1, true);
+}
 	
 	
 }

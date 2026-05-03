@@ -3,7 +3,7 @@ ds_list_clear(global.rival_targets);
 if (room == rm_levelOne) global.current_level = 1;
 else if (room == rm_levelTwo) global.current_level = 2; 
 else if (room == rm_levelThree) { global.current_level = 3; global.rival_active = true; }
-
+show_debug_message("Room start - current level: " + string(global.current_level));
 global.level_complete = false; 
 global.alert_level = 0; 
 global.alert_timer = 0;
@@ -13,6 +13,7 @@ global.locus_drain_timer = 0;
 global.locus_regen_timer = 0;
 global.fading = false;
 global.fade_alpha = 0;
+global.has_key = false;
 visible = true;
 
 with (obj_camera) {

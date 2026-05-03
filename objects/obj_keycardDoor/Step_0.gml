@@ -10,6 +10,9 @@ if (nearest_guard != noone) {
 
 //open if guard is close or door was manually opened via interact
 if (guard_close || is_open) {
+	if (image_index == 0) { //only play at start of animation
+        audio_play_sound(snd_door, 1, false);
+    }
 	solid = false;
 	if (image_index < image_number - 1) {
 		image_speed = 1; //play forward

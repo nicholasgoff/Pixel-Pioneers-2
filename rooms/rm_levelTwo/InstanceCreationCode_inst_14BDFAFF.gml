@@ -1,0 +1,1 @@
+linked_door = inst_13548988

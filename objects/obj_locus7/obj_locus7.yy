@@ -38,8 +38,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_locus7",
-    "path":"sprites/spr_locus7/spr_locus7.yy",
+    "name":"spr_locus7Alt",
+    "path":"sprites/spr_locus7Alt/spr_locus7Alt.yy",
   },
   "spriteMaskId":null,
   "visible":true,
