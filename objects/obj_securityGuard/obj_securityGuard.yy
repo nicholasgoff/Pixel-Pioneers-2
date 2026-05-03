@@ -32,8 +32,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_securityGaurd",
-    "path":"sprites/spr_securityGaurd/spr_securityGaurd.yy",
+    "name":"spr_securityGuard",
+    "path":"sprites/spr_securityGuard/spr_securityGuard.yy",
   },
   "spriteMaskId":null,
   "visible":true,
