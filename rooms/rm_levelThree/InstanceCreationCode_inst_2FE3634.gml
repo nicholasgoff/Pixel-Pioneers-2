@@ -1,0 +1,1 @@
+path_start(pth_robot_path, 1, true, true);

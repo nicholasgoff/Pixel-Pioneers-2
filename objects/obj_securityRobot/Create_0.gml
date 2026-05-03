@@ -4,6 +4,11 @@ patrol_paused = false;
 return_timer = 0;
 patrol_resume = false;
 patrol_path_pos = 0;
+anim_timer = 0;
+anim_speed = 8;
+facing = 1;
+last_x = x;
+last_y = y;
 //possession
 is_possessed = false;
 possessed_blend = c_lime;

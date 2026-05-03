@@ -1,0 +1,1 @@
+path_start(pth_end, 1, false, true);

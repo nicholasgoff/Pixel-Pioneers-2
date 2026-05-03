@@ -65,3 +65,44 @@ if (speed > 0) {
 		image_xscale = 1; //facing right
 	}
 }
+
+var is_moving = (x != last_x);
+
+// determine facing based only on horizontal movement
+if (is_moving) {
+    if (x > last_x) {
+        facing = 1;  // right
+    } else if (x < last_x) {
+        facing = -1; // left
+    }
+}
+
+last_x = x;
+
+// animation
+anim_timer++;
+if (anim_timer >= anim_speed) {
+    anim_timer = 0;
+
+    if (is_moving) {
+        // running animation (frames 2–9)
+        if (image_index < 2 || image_index > 9) {
+            image_index = 2;
+        } else {
+            image_index++;
+            if (image_index > 9) image_index = 2;
+        }
+    } else {
+        // idle frames
+        if (facing == 1) {
+            image_index = 0; // idle right
+        } else {
+            image_index = 1; // idle left
+        }
+    }
+
+    image_speed = 0;
+}
+
+// flip sprite for left movement
+image_xscale = facing;

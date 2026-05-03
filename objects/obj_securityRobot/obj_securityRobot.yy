@@ -32,8 +32,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_securityRobot",
-    "path":"sprites/spr_securityRobot/spr_securityRobot.yy",
+    "name":"spr_robot_alt",
+    "path":"sprites/spr_robot_alt/spr_robot_alt.yy",
   },
   "spriteMaskId":null,
   "visible":true,

@@ -47,6 +47,7 @@ function scr_interact(host) {
 	if (instance_exists(obj_pylon)) {
 	var nearest_pylon = instance_nearest(host.x, host.y, obj_pylon);
 	if (nearest_pylon != noone && rectangle_in_circle(nearest_pylon.bbox_left, nearest_pylon.bbox_top, nearest_pylon.bbox_right, nearest_pylon.bbox_bottom, host.x, host.y, INTERACT_RANGE)) {
+		instance_create_layer(host.x + 30 + sign(host.image_xscale), host.y, layer, obj_melee)
 		instance_destroy(nearest_pylon);
 		scr_hud_message("PYLON DESTROYED");
 		exit;
@@ -60,6 +61,7 @@ function scr_interact(host) {
 			if (instance_number(obj_pylon) == 0) {
 				if (nearest_mt.hit_cooldown <= 0 && !nearest_mt.is_destroyed) {
 					nearest_mt.hp--;
+					instance_create_layer(host.x + 30 + sign(host.image_xscale), host.y, layer, obj_melee)
 					nearest_mt.hit_cooldown = 180;
 					scr_hud_message("TERMINAL HIT - " + string(nearest_mt.hp) + " HITS REMAINING");
 					if (nearest_mt.hp <= 0) {

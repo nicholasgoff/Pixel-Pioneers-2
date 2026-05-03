@@ -14,6 +14,7 @@ function scr_boss_init() {
 //scr_boss_step(locus_inst)
 // call every step from obj_locus7 (level 4 only)
 function scr_boss_step(locus_inst) {
+	if (!variable_global_exists("boss_timer")) return;
 	global.boss_timer++;
 	global.boss_takeover_cd--;
 	
