@@ -48,8 +48,8 @@ function scr_global_init(){
 	global.has_key = false;
 	
 	if (!audio_is_playing(snd_bkg_music)) {
-    audio_play_sound(snd_bkg_music, 1, true);
-		}
+		audio_play_sound(snd_bkg_music, 1, true);
+	}
 
 	
 }

@@ -6,7 +6,7 @@ var _my = device_mouse_y_to_gui(0);
 if (mouse_check_button_pressed(mb_left)) {
     if (menu == "main") {
         if (point_in_rectangle(_mx, _my, _cx-200, _cy-100, _cx+200, _cy-40))
-            room_goto(rm_tutorial); // your game room
+            room_goto(rm_tutorial);
         if (point_in_rectangle(_mx, _my, _cx-200, _cy-20, _cx+200, _cy+40))
             menu = "instructions";
         if (point_in_rectangle(_mx, _my, _cx-200, _cy+60, _cx+200, _cy+120))
