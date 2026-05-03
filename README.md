@@ -21,6 +21,7 @@ CONTROLS:
     - Left Click : Possess nearby unit / interact with terminal 
     - E : Release current host (return to ghost form)
     - Shift : Sprint (drains stamina, guards and robots only)
+    - F11 : Toggle full Screen (Can only be toggled in menu)
 
 POSSESSABLE UNITS: 
     -Security Guard : Opens keycard doors and terminals. Blends in with other guards. Slow but high clearance. 
