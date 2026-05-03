@@ -13,8 +13,8 @@
   ],
   "name":"rm_lose",
   "parent":{
-    "name":"tilesets",
-    "path":"folders/Sprites/tilesets.yy",
+    "name":"Rooms",
+    "path":"folders/Rooms.yy",
   },
   "parentRoom":null,
   "physicsSettings":{
