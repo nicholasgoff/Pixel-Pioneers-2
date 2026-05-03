@@ -1,6 +1,6 @@
 //obj_rivalAi Create event
 rival_seize_timer = 0;
-rival_seize_interval = 1800; //seize a new unit every 10 seconds
+rival_seize_interval = 600; //seize a new unit every 10 seconds
 rival_max_units = 1; //only control one unit at a time
 move_speed = 2;
 sight_range = 150;

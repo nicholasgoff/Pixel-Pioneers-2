@@ -1,8 +1,8 @@
 {
   "$GMSprite":"v2",
   "%Name":"spr_door2",
-  "bboxMode":0,
-  "bbox_bottom":95,
+  "bboxMode":2,
+  "bbox_bottom":70,
   "bbox_left":18,
   "bbox_right":53,
   "bbox_top":14,

@@ -22,6 +22,7 @@ function scr_global_init(){
 	//AI Systems 
 	global.rival_active = false; //true from level 3 onward
 	global.rival_targets = ds_list_create(); //instances the rival AI controls
+	global.rival_max_units = 1
 	
 	//Alert system
 	// 0 = calm | 1 = suspicious | 2 = full alert (ejects locus from host)

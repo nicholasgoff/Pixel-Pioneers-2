@@ -1,1 +1,1 @@
-face_direction = 100
+face_direction = 300

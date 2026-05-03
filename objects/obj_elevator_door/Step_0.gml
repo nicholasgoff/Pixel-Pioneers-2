@@ -1,3 +1,8 @@
+if (auto_open && !is_opening) {
+    is_opening = true;
+    image_speed = 1;
+}
+
 if (!is_opening && global.has_key) {
     var host = noone;
     if (global.possessed_unit != noone) {
@@ -20,12 +25,15 @@ if (is_opening && !is_open) {
     if (image_index >= image_number - 1) {
         is_open = true;
         image_speed = 0;
-        //check locus7's alarm not elevator's alarm
-        var locus7 = instance_find(obj_locus7, 0);
-        if (locus7 != noone && locus7.alarm[0] == -1) {
-            global.fading = true;
-            global.fade_alpha = 0;
-            locus7.alarm[0] = 180;
+        
+        //only trigger transition for non-auto doors
+        if (!auto_open) {
+            var locus7 = instance_find(obj_locus7, 0);
+            if (locus7 != noone && locus7.alarm[0] == -1) {
+                global.fading = true;
+                global.fade_alpha = 0;
+                locus7.alarm[0] = 180;
+            }
         }
     }
 }
