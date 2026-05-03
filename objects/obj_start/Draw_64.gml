@@ -1,5 +1,5 @@
-var cx = room_width / 2;
-var cy = room_height / 2;
+var cx = display_get_gui_width / 2;
+var cy = display_get_gui_height() / 2;
 
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
@@ -11,19 +11,19 @@ draw_text(cx, cy - 250, "Possession Protocol");
 // MAIN MENU
 draw_set_font(fnt_menu);
 if (menu == "main") {
-	if (point_in_rectangle(mouse_x, mouse_y, cx - 200, cy - 100, cx + 200, cy - 40)) {
+	if (point_in_rectangle(device_mouse_x_to_gui(0), device_mouse_y_to_gui(0), cx - 200, cy - 100, cx + 200, cy - 40)) {
         draw_text(cx, cy - 60, "> Start Game <");
     } else draw_text(cx, cy - 60, "Start Game");
 	
-	if (point_in_rectangle(mouse_x, mouse_y, cx - 200, cy - 20, cx + 200, cy + 40)) {
+	if (point_in_rectangle(device_mouse_x_to_gui(0), device_mouse_y_to_gui(0), cx - 200, cy - 20, cx + 200, cy + 40)) {
         draw_text(cx, cy + 20, "> Instructions <");
     } else draw_text(cx, cy + 20, "Instructions");
 	
-	if (point_in_rectangle(mouse_x, mouse_y, cx - 200, cy + 60, cx + 200, cy + 120)) {
+	if (point_in_rectangle(device_mouse_x_to_gui(0), device_mouse_y_to_gui(0), cx - 200, cy + 60, cx + 200, cy + 120)) {
         draw_text(cx, cy + 100, "> Credits <");
     } else draw_text(cx, cy + 100, "Credits");
 	
-	if (point_in_rectangle(mouse_x, mouse_y, cx - 200, cy + 140, cx + 200, cy + 200)) {
+	if (point_in_rectangle(device_mouse_x_to_gui(0), device_mouse_y_to_gui(0), cx - 200, cy + 140, cx + 200, cy + 200)) {
 	    draw_text(cx, cy + 180, "> Quit <");
 	} else draw_text(cx, cy + 180, "Quit");
 	
@@ -41,7 +41,7 @@ if (menu == "instructions") {
 	draw_set_halign(fa_center);
 	
     
-    if (point_in_rectangle(mouse_x, mouse_y, cx - 200, cy + 440, cx + 200, cy + 500)) {
+    if (point_in_rectangle(device_mouse_x_to_gui(0), device_mouse_y_to_gui(0), cx - 200, cy + 440, cx + 200, cy + 500)) {
         draw_text(cx, cy + 480, "> Back <");
     } else draw_text(cx, cy + 480, "Back");
 }
@@ -55,7 +55,7 @@ if (menu == "credits") {
 	draw_text(cx, cy + 240, "Jayden Patton - Artist");
 	draw_text(cx, cy + 320, "Al'Montay Eley - Programmer");
     
-    if (point_in_rectangle(mouse_x, mouse_y, cx - 200, cy + 440, cx + 200, cy + 500)) {
+    if (point_in_rectangle(device_mouse_x_to_gui(0), device_mouse_y_to_gui(0), cx - 200, cy + 440, cx + 200, cy + 500)) {
         draw_text(cx, cy + 480, "> Back <");
     } else draw_text(cx, cy + 480, "Back");
 }
