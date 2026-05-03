@@ -1,5 +1,5 @@
 patrol_path = -1;  //assign in room editor creation code
-patrol_speed = 1;  //adjust per unit type
+patrol_speed = 4  //adjust per unit type
 patrol_paused = false;
 return_timer = 0;
 patrol_resume = false;
@@ -13,7 +13,7 @@ last_y = y;
 is_possessed = false;
 possessed_blend = c_lime;
 unit_name = "SECURITY ROBOT";
-move_speed = 1;
+move_speed = 4;
 can_sprint = false; //robots don't sprint
 
 //vision
