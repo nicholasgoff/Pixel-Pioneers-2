@@ -1,1 +1,0 @@
-linked_door = inst_126EC3F8

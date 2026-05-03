@@ -1,0 +1,1 @@
+path_start(Pth_guard3_patrol, 1, true, true)
