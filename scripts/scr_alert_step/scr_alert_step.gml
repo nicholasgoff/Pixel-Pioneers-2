@@ -8,14 +8,23 @@ function scr_alert_step() {
 		if (global.alert_level > 0) {
 			global.alert_level--;
 			global.alert_timer = 300;
+			global.alert_points_deducted = false
 		}
 	}
 	
 	//full alert - eject locus from host
 	if (global.alert_level == 2) {
+		
+		if(!global.alert_points_deducted){
+			global.points -= 50
+			global.alert_points_deducted =  true
+		}
+		
 		if (global.possessed_unit != noone) {
 			scr_force_eject(obj_locus7);
 			global.alert_level = 1;
+			
+			
 		}
 		
 		//drain locus hp - 1 HP every 2 seconds
@@ -28,7 +37,7 @@ function scr_alert_step() {
 			//game over
 			if (global.locus_hp <= 0) {
 				global.locus_hp = 0;
-				room_goto(rm_gameover);
+				room_goto(rm_lose);
 			}
 		}
 		

@@ -24,6 +24,7 @@ if (locus7 != noone) {
 			global.alert_level = 2;
 			global.alert_timer = 300;
 			scr_hud_message("!!! CAMERA LOCKED ON LOCUS-7 !!!");
+			audio_play_sound(snd_spotted, 1, false);
 		} else {
 			//just spotted - suspicious
 			if (global.alert_level < 1) {

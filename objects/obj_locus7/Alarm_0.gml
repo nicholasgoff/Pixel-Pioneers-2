@@ -1,4 +1,6 @@
+show_debug_message("Alarm fired - current level before increment: " + string(global.current_level));
 global.current_level++;
+show_debug_message("current level after increment: " + string(global.current_level));
 
 switch (global.current_level) {
 	case 1: room_goto(rm_levelOne); break

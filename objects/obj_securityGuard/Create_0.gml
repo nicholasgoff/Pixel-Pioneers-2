@@ -4,6 +4,11 @@ patrol_paused = false;
 return_timer = 0;
 patrol_resume = false;
 patrol_path_pos = 0; //saves position on path when possessed
+anim_timer = 0;
+anim_speed = 8; //frames between animation updates, higher = slower
+last_direction = 0; //tracks last facing direction
+last_x = x;
+last_y = y;
 //possession
 is_possessed = false;
 possessed_blend = c_lime;

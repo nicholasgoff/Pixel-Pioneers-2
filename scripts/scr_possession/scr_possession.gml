@@ -42,7 +42,8 @@ function scr_try_possess(locus_inst) {
 		patrol_path_pos = path_position; //save current position on path
 		path_end();
 	}
-best.is_possessed = true; 
+best.is_possessed = true;
+
 best.patrol_paused = true; //freeze AI patrol while possessed
 	
 	//restore stamina to full when entering a new host
@@ -82,6 +83,7 @@ best.patrol_paused = true; //freeze AI patrol while possessed
 	//HUD feedback
 	scr_hud_message("LINK ESTABLISHED - " + string(best.unit_name));
 	global.points += 100; //points for successful possession
+	audio_play_sound(snd_possess, 1, false);
 	return true;
 }
 
@@ -146,7 +148,7 @@ function scr_force_eject(locus_inst) {
 	var eject_y = locus_inst.y;
 	if (global.possessed_unit != noone) {
 		eject_x = global.possessed_unit.x;
-		eject_y = global.possed_unit.y; 
+		eject_y = global.possessed_unit.y; 
 	}
 	
 	scr_release_host(locus_inst);

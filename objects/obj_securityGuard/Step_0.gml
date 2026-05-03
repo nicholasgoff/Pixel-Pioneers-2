@@ -12,6 +12,7 @@ if (locus7 != noone) {
             global.alert_level = 2;
             global.alert_timer = 300;
             scr_hud_message("!!! GUARD LOCKED ON LOCUS-7 !!!");
+			audio_play_sound(snd_spotted, 1, false);
         } else {
             //just spotted - suspicious
             if (global.alert_level < 1) {
@@ -72,15 +73,42 @@ if (is_possessed) {
 	image_blend = c_white;
 }
 
-//flip sprite and update image_angle based on movement direction
-if (speed > 0) {
-	var dir = direction;
-	image_angle = dir;
-	if (dir > 90 && dir < 270) {
-		image_xscale = -1;
-	} else {
-		image_xscale = 1;
-	}
+//animate guard based on movement direction and state
+//track last direction when moving
+var is_moving = (x != last_x || y != last_y);
+
+if (is_moving) {
+    var new_dir = point_direction(last_x, last_y, x, y);
+    //only update direction if it has changed significantly
+    if (abs(angle_difference(new_dir, last_direction)) > 45) {
+        last_direction = new_dir;
+    }
+}
+
+last_x = x;
+last_y = y;
+
+anim_timer++;
+if (anim_timer >= anim_speed) {
+    anim_timer = 0;
+    
+    var start_frame = 0;
+    
+    if (is_moving) {
+        if (last_direction >= 315 || last_direction < 45) start_frame = 24;
+        else if (last_direction >= 45 && last_direction < 135) start_frame = 30;
+        else if (last_direction >= 135 && last_direction < 225) start_frame = 36;
+        else start_frame = 42;
+    } else {
+        if (last_direction >= 315 || last_direction < 45) start_frame = 0;
+        else if (last_direction >= 45 && last_direction < 135) start_frame = 6;
+        else if (last_direction >= 135 && last_direction < 225) start_frame = 12;
+        else start_frame = 18;
+    }
+    
+    var frame_offset = (image_index - start_frame + 1) mod 6;
+    image_index = start_frame + frame_offset;
+    image_speed = 0;
 }
 
 //keep unit inside room bounds

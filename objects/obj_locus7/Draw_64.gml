@@ -1,10 +1,10 @@
 //HUD message - top center
 if (global.hud_msg_timer > 0) {
+	draw_set_font(fnt_message);
 	draw_set_halign(fa_center);
 	draw_set_valign(fa_top);
 	draw_set_color(c_white);
-	draw_set_font(fnt_hud);
-	draw_text(display_get_gui_width() / 2, 10, global.hud_message);
+	draw_text(display_get_gui_width() / 2, 100, global.hud_message);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_top);
 }
@@ -19,11 +19,21 @@ draw_set_color(c_lime);
 draw_rectangle(10, 10, 10 + (bar_width * health_pct), 10 + bar_height, false);
 
 //alert level - below health bar
+draw_set_font(fnt_hud)
+draw_set_halign(fa_left)
 var alert_col = c_white;
 if (global.alert_level == 1) alert_col = c_yellow;
 if (global.alert_level == 2) alert_col = c_red;
 draw_set_color(alert_col);
-draw_text(120, 98, "ALERT: " + string(global.alert_level));
+draw_text(10, 50, "ALERT: " + string(global.alert_level));
+draw_set_color(c_white);
+
+//Points
+draw_set_font(fnt_hud)
+draw_set_halign(fa_left)
+var points_col = c_white;
+draw_set_color(points_col);
+draw_text(10, 80, "Points: " + string(global.points));
 draw_set_color(c_white);
 
 //fade to black
