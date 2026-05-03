@@ -1,5 +1,5 @@
 patrol_path = -1;  //assign in room editor creation code
-patrol_speed = 0.5;  //adjust per unit type
+patrol_speed = 1;  //adjust per unit type
 patrol_paused = false;
 return_timer = 0;
 patrol_resume = false;
