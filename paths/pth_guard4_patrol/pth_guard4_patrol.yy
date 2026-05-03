@@ -1,0 +1,19 @@
+{
+  "$GMPath":"",
+  "%Name":"pth_guard4_patrol",
+  "closed":true,
+  "kind":0,
+  "name":"pth_guard4_patrol",
+  "parent":{
+    "name":"Paths",
+    "path":"folders/Paths.yy",
+  },
+  "points":[
+    {"speed":100.0,"x":145.34482,"y":527.39905,},
+    {"speed":100.0,"x":253.31021,"y":527.3721,},
+    {"speed":100.0,"x":367.99744,"y":528.1127,},
+  ],
+  "precision":4,
+  "resourceType":"GMPath",
+  "resourceVersion":"2.0",
+}

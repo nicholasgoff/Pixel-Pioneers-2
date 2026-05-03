@@ -5,4 +5,3 @@ if (!global.fading) {
 	scr_hud_message("UPLINK ESTABLISHED - TRANSMITTING...");
 	with (obj_locus7) alarm[0] = 180;
 }
-
